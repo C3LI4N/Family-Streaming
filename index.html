@@ -4,149 +4,241 @@
 <head>
 
 <meta charset="UTF-8">
-<title>Family Streaming</title>
+<title>Family Hub</title>
 
-<!-- favicon -->
+<!-- Favicon (logo dans l'onglet) -->
 <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/777/777242.png">
 
-<!-- police moderne -->
+<!-- Police moderne -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
-<!-- icônes -->
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<!-- Icônes -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
 
-/* ================= GLOBAL ================= */
+/* ===== BODY ===== */
 
 body{
+
 font-family:'Poppins',sans-serif;
 margin:0;
-background:linear-gradient(135deg,#667eea,#764ba2);
+
+background:
+linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)),
+url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba");
+
+background-size:cover;
+background-position:center;
+background-attachment:fixed;
+
 min-height:100vh;
 display:flex;
 flex-direction:column;
 align-items:center;
+
 color:white;
 transition:0.3s;
+
 }
 
+/* ===== TITRE ===== */
+
 h1{
+
 margin-top:40px;
 font-size:42px;
 font-weight:600;
-letter-spacing:1px;
+
 }
 
-/* ================= RECHERCHE ================= */
+/* ===== RECHERCHE ===== */
 
 .search{
+
 margin:25px;
+
 }
 
 input{
+
 padding:14px;
 width:280px;
+
 border-radius:30px;
 border:none;
 outline:none;
+
 font-size:15px;
-box-shadow:0 5px 15px rgba(0,0,0,0.2);
+
+box-shadow:0 5px 15px rgba(0,0,0,0.25);
+
 }
 
-/* ================= CONTAINER ================= */
+/* ===== CONTAINER ===== */
 
 .container{
+
 display:flex;
 flex-wrap:wrap;
 gap:30px;
+
 justify-content:center;
+
 margin-top:20px;
+
 }
 
-/* ================= CARTES ================= */
+/* ===== CARTES ===== */
 
 .card{
+
 background:rgba(255,255,255,0.15);
 backdrop-filter:blur(12px);
+
 padding:25px;
+
 border-radius:16px;
+
 width:220px;
-box-shadow:0 10px 25px rgba(0,0,0,0.25);
+
+box-shadow:0 10px 25px rgba(0,0,0,0.35);
+
 transition:0.3s;
+
 animation:fadeIn 0.6s ease;
+
 }
 
 .card:hover{
+
 transform:translateY(-8px) scale(1.03);
-box-shadow:0 18px 40px rgba(0,0,0,0.35);
+
+box-shadow:0 20px 40px rgba(0,0,0,0.5);
+
 }
+
+/* ===== LOGO SITE ===== */
+
+.site-logo{
+
+width:60px;
+height:60px;
+
+object-fit:contain;
+
+display:block;
+
+margin:auto;
+margin-bottom:10px;
+
+border-radius:12px;
+
+}
+
+/* ===== TITRE CARTE ===== */
 
 .card h2{
+
 text-align:center;
-margin-bottom:20px;
+margin-bottom:15px;
+
 }
 
-/* ================= BOUTONS ================= */
+/* ===== LIENS ===== */
 
 .link{
+
 display:block;
+
 text-decoration:none;
+
 color:white;
+
 background:rgba(255,255,255,0.18);
+
 padding:12px;
+
 border-radius:12px;
+
 margin:10px 0;
+
 transition:0.25s;
+
 text-align:center;
+
 font-weight:500;
+
 }
 
 .link:hover{
+
 background:rgba(255,255,255,0.35);
+
 transform:scale(1.05);
+
 }
 
-/* ================= MODE SOMBRE ================= */
+/* ===== BOUTON MODE SOMBRE ===== */
 
 .mode{
+
 position:absolute;
+
 top:20px;
 right:20px;
+
 background:white;
 color:black;
+
 border:none;
+
 padding:8px 15px;
+
 border-radius:20px;
+
 cursor:pointer;
+
 font-size:14px;
+
 }
 
+/* ===== MODE SOMBRE ===== */
+
 .dark{
+
 background:#111;
+
 }
 
 .dark .card{
+
 background:#1f1f1f;
+
 }
 
 .dark .link{
+
 background:#333;
+
 }
 
-/* ================= ANIMATION ================= */
+/* ===== ANIMATION ===== */
 
 @keyframes fadeIn{
 
 from{
+
 opacity:0;
 transform:translateY(15px);
+
 }
 
 to{
+
 opacity:1;
 transform:translateY(0);
+
 }
 
 }
@@ -162,46 +254,101 @@ transform:translateY(0);
 <h1>Family Hub</h1>
 
 <div class="search">
+
 <input type="text" id="searchInput" placeholder="🔎 Rechercher un site...">
+
 </div>
 
 <div class="container">
 
+<!-- PURSTREAM -->
+
 <div class="card">
+
+<img class="site-logo"
+src="https://www.google.com/s2/favicons?sz=128&domain=purstream.co">
+
 <h2>Purstream</h2>
-<a class="link" href="https://purstream.cc" target="_blank" rel="noopener noreferrer">
+
+<a class="link"
+href="https://purstream.co"
+target="_blank"
+rel="noopener noreferrer">
+
 <i class="fa-solid fa-film"></i> Accueil
+
 </a>
+
 </div>
 
+<!-- CINEPULSE -->
+
 <div class="card">
+
+<img class="site-logo"
+src="https://www.google.com/s2/favicons?sz=128&domain=cinepulse.lol">
+
 <h2>Cinepulse</h2>
-<a class="link" href="https://cinepulse.co" target="_blank" rel="noopener noreferrer">
+
+<a class="link"
+href="https://cinepulse.lol"
+target="_blank"
+rel="noopener noreferrer">
+
 <i class="fa-solid fa-film"></i> Accueil
+
 </a>
+
 </div>
 
+<!-- HIBOUX -->
+
 <div class="card">
+
+<img class="site-logo"
+src="https://www.google.com/s2/favicons?sz=128&domain=hiboux.click">
+
 <h2>Hiboux+</h2>
-<a class="link" href="https://hiboux.click" target="_blank" rel="noopener noreferrer">
+
+<a class="link"
+href="https://hiboux.click"
+target="_blank"
+rel="noopener noreferrer">
+
 <i class="fa-solid fa-film"></i> Accueil
+
 </a>
+
 </div>
 
+<!-- MOVIX -->
+
 <div class="card">
+
+<img class="site-logo"
+src="https://www.google.com/s2/favicons?sz=128&domain=movix.blog">
+
 <h2>Movix</h2>
-<a class="link" href="https://movix.blog" target="_blank" rel="noopener noreferrer">
+
+<a class="link"
+href="https://movix.blog"
+target="_blank"
+rel="noopener noreferrer">
+
 <i class="fa-solid fa-film"></i> Accueil
+
 </a>
+
 </div>
 
 </div>
 
 <script>
 
-/* recherche */
+/* ===== RECHERCHE ===== */
 
 const searchInput = document.getElementById("searchInput");
+
 const cards = document.querySelectorAll(".card");
 
 searchInput.addEventListener("keyup", function(){
@@ -213,39 +360,51 @@ cards.forEach(card => {
 let text = card.textContent.toLowerCase();
 
 if(text.includes(filter)){
+
 card.style.display="block";
+
 }
+
 else{
+
 card.style.display="none";
+
 }
 
 });
 
 });
 
-/* mode sombre */
+/* ===== MODE SOMBRE ===== */
 
 function toggleMode(){
 
 document.body.classList.toggle("dark");
 
 if(document.body.classList.contains("dark")){
+
 localStorage.setItem("theme","dark");
+
 }
+
 else{
+
 localStorage.setItem("theme","light");
-}
 
 }
 
-/* charger thème */
+}
+
+/* ===== CHARGER THEME ===== */
 
 window.onload = function(){
 
 let theme = localStorage.getItem("theme");
 
 if(theme === "dark"){
+
 document.body.classList.add("dark");
+
 }
 
 };
@@ -253,4 +412,5 @@ document.body.classList.add("dark");
 </script>
 
 </body>
+
 </html>
