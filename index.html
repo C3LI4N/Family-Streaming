@@ -119,6 +119,8 @@ overflow:hidden;
 
 content:"";
 
+pointer-events:none;
+
 position:absolute;
 
 width:200%;
@@ -257,23 +259,48 @@ background:#333;
 
 @media (max-width:700px){
 
-body{
+/* fond plus sombre pour lire les cartes */
+
+body:not(.dark){
 
 background:
 linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)),
 url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba");
 
 background-size:cover;
+background-position:center;
 
 }
+
+/* largeur uniforme */
+
+h1,
+#clock,
+.search,
+.container{
+
+width:92%;
+max-width:420px;
+
+margin-left:auto;
+margin-right:auto;
+
+}
+
+/* cartes */
 
 .container{
 
 grid-template-columns:repeat(2,1fr);
-
-width:92%;
-
 gap:15px;
+
+}
+
+/* recherche */
+
+.search input{
+
+width:100%;
 
 }
 
