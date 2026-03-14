@@ -5,15 +5,13 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Family Stream</title>
 
-<!-- Favicon (logo dans l'onglet) -->
 <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/777/777242.png">
 
-<!-- Police moderne -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
-<!-- Icônes -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
@@ -34,11 +32,13 @@ background-position:center;
 background-attachment:fixed;
 
 min-height:100vh;
+
 display:flex;
 flex-direction:column;
 align-items:center;
 
 color:white;
+
 transition:0.3s;
 
 }
@@ -53,6 +53,16 @@ font-weight:600;
 
 }
 
+/* ===== HORLOGE ===== */
+
+#clock{
+
+font-size:18px;
+opacity:0.8;
+margin-top:5px;
+
+}
+
 /* ===== RECHERCHE ===== */
 
 .search{
@@ -64,7 +74,8 @@ margin:25px;
 input{
 
 padding:14px;
-width:280px;
+
+width:260px;
 
 border-radius:30px;
 border:none;
@@ -72,7 +83,15 @@ outline:none;
 
 font-size:15px;
 
+transition:0.3s;
+
 box-shadow:0 5px 15px rgba(0,0,0,0.25);
+
+}
+
+input:focus{
+
+width:320px;
 
 }
 
@@ -82,6 +101,7 @@ box-shadow:0 5px 15px rgba(0,0,0,0.25);
 
 display:flex;
 flex-wrap:wrap;
+
 gap:30px;
 
 justify-content:center;
@@ -95,7 +115,11 @@ margin-top:20px;
 .card{
 
 background:rgba(255,255,255,0.15);
+
 backdrop-filter:blur(12px);
+-webkit-backdrop-filter:blur(12px);
+
+border:1px solid rgba(255,255,255,0.15);
 
 padding:25px;
 
@@ -109,6 +133,8 @@ transition:0.3s;
 
 animation:fadeIn 0.6s ease;
 
+overflow:hidden;
+
 }
 
 .card:hover{
@@ -116,6 +142,12 @@ animation:fadeIn 0.6s ease;
 transform:translateY(-8px) scale(1.03);
 
 box-shadow:0 20px 40px rgba(0,0,0,0.5);
+
+}
+
+.card:active{
+
+transform:scale(0.97);
 
 }
 
@@ -134,6 +166,14 @@ margin:auto;
 margin-bottom:10px;
 
 border-radius:12px;
+
+transition:0.3s;
+
+}
+
+.card:hover .site-logo{
+
+transform:scale(1.15) rotate(3deg);
 
 }
 
@@ -229,69 +269,69 @@ background:#333;
 @keyframes fadeIn{
 
 from{
-
 opacity:0;
 transform:translateY(15px);
-
 }
 
 to{
-
 opacity:1;
 transform:translateY(0);
-
 }
 
 }
 
 /* ===== VERSION MOBILE ===== */
 
-@media (max-width: 600px){
+@media (max-width:600px){
+
+body{
+
+background:
+linear-gradient(rgba(0,0,0,0.82), rgba(0,0,0,0.82)),
+url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba");
+
+background-size:cover;
+background-position:center;
+
+}
 
 h1{
+
 font-size:30px;
 text-align:center;
+
 }
 
 .search input{
+
 width:85%;
+
 }
 
 .container{
+
 flex-direction:column;
 align-items:center;
 gap:20px;
+
 }
 
 .card{
 
-background:rgba(255,255,255,0.12);
-
-backdrop-filter:blur(12px);
--webkit-backdrop-filter:blur(12px);
-
-border:1px solid rgba(255,255,255,0.15);
-
-padding:25px;
-
-border-radius:16px;
-
-width:220px;
-
-box-shadow:0 10px 25px rgba(0,0,0,0.35);
-
-transition:0.3s;
-
-animation:fadeIn 0.6s ease;
-
-overflow:hidden;
+width:85%;
+max-width:300px;
 
 }
+
 .mode{
+
 top:15px;
 right:15px;
+
 font-size:12px;
+
 padding:6px 12px;
+
 }
 
 }
@@ -302,9 +342,11 @@ padding:6px 12px;
 
 <body>
 
-<button class="mode" onclick="toggleMode()">🌙 Mode sombre</button>
+<button class="mode" onclick="toggleMode()" id="modeBtn">🌙</button>
 
 <h1>Family Stream</h1>
+
+<div id="clock"></div>
 
 <div class="search">
 
@@ -312,13 +354,11 @@ padding:6px 12px;
 
 </div>
 
-<!-- ======================== HTML inchangé jusqu'à <div class="container"> ======================== -->
-
 <div class="container">
 
 <!-- PURSTREAM -->
 
-<div class="card" data-status="online" data-reliability="4" data-complexity="Moyenne" data-type="Films, Séries" data-lastchecked="13/03/2026">
+<div class="card">
 
 <img class="site-logo"
 src="https://www.google.com/s2/favicons?sz=128&domain=purstream.co"
@@ -326,27 +366,20 @@ onerror="this.src='https://cdn-icons-png.flaticon.com/512/1160/1160358.png'">
 
 <h2>Purstream</h2>
 
-<!-- Tooltip infos -->
-<div class="tooltip">
-Status: ✅ En ligne<br>
-Fiabilité: ★★★★★<br>
-Complexité: Faible<br>
-Contenu: Films, Séries<br>
-Dernière vérif: 13/03/2026
-</div>
-
 <a class="link"
 href="https://purstream.cc"
 target="_blank"
 rel="noopener noreferrer">
+
 <i class="fa-solid fa-film"></i> Accueil
+
 </a>
 
 </div>
 
 <!-- CINEPULSE -->
 
-<div class="card" data-status="warning" data-reliability="3" data-complexity="Élevée" data-type="Films" data-lastchecked="12/03/2026">
+<div class="card">
 
 <img class="site-logo"
 src="https://icons.duckduckgo.com/ip3/cinepulse.lol.ico"
@@ -354,26 +387,20 @@ onerror="this.src='https://cdn-icons-png.flaticon.com/512/1160/1160358.png'">
 
 <h2>Cinepulse</h2>
 
-<div class="tooltip">
-Status: ⚠️ Accès limité<br>
-Fiabilité: ★★★★☆<br>
-Complexité: Faible<br>
-Contenu: Films<br>
-Dernière vérif: 13/03/2026
-</div>
-
 <a class="link"
 href="https://cinepulse.co"
 target="_blank"
 rel="noopener noreferrer">
+
 <i class="fa-solid fa-film"></i> Accueil
+
 </a>
 
 </div>
 
 <!-- HIBOUX -->
 
-<div class="card" data-status="offline" data-reliability="2" data-complexity="Faible" data-type="Séries" data-lastchecked="10/03/2026">
+<div class="card">
 
 <img class="site-logo"
 src="https://www.google.com/s2/favicons?sz=128&domain=hiboux.click"
@@ -381,26 +408,20 @@ onerror="this.src='https://cdn-icons-png.flaticon.com/512/1160/1160358.png'">
 
 <h2>Hiboux+</h2>
 
-<div class="tooltip">
-Status: ✅ En ligne<br>
-Fiabilité: ★★★★★<br>
-Complexité: Moyenne<br>
-Contenu: Sports<br>
-Dernière vérif: 13/03/2026
-</div>
-
 <a class="link"
 href="https://hiboux.xyz"
 target="_blank"
 rel="noopener noreferrer">
+
 <i class="fa-solid fa-film"></i> Accueil
+
 </a>
 
 </div>
 
 <!-- MOVIX -->
 
-<div class="card" data-status="online" data-reliability="4" data-complexity="Moyenne" data-type="Films, Séries" data-lastchecked="13/03/2026">
+<div class="card">
 
 <img class="site-logo"
 src="https://www.google.com/s2/favicons?sz=128&domain=movix.blog"
@@ -408,19 +429,13 @@ onerror="this.src='https://cdn-icons-png.flaticon.com/512/1160/1160358.png'">
 
 <h2>Movix</h2>
 
-<div class="tooltip">
-Status: ✅ En ligne<br>
-Fiabilité: ★★★☆☆<br>
-Complexité: Moyenne<br>
-Contenu: Films, Séries<br>
-Dernière vérif: 13/03/2026
-</div>
-
 <a class="link"
 href="https://movix.blog"
 target="_blank"
 rel="noopener noreferrer">
+
 <i class="fa-solid fa-film"></i> Accueil
+
 </a>
 
 </div>
@@ -432,7 +447,6 @@ rel="noopener noreferrer">
 /* ===== RECHERCHE ===== */
 
 const searchInput = document.getElementById("searchInput");
-
 const cards = document.querySelectorAll(".card");
 
 searchInput.addEventListener("keyup", function(){
@@ -443,17 +457,7 @@ cards.forEach(card => {
 
 let text = card.textContent.toLowerCase();
 
-if(text.includes(filter)){
-
-card.style.display="block";
-
-}
-
-else{
-
-card.style.display="none";
-
-}
+card.style.display = text.includes(filter) ? "block" : "none";
 
 });
 
@@ -465,15 +469,19 @@ function toggleMode(){
 
 document.body.classList.toggle("dark");
 
+const btn = document.getElementById("modeBtn");
+
 if(document.body.classList.contains("dark")){
 
 localStorage.setItem("theme","dark");
+btn.textContent="☀️";
 
 }
 
 else{
 
 localStorage.setItem("theme","light");
+btn.textContent="🌙";
 
 }
 
@@ -488,10 +496,26 @@ let theme = localStorage.getItem("theme");
 if(theme === "dark"){
 
 document.body.classList.add("dark");
+document.getElementById("modeBtn").textContent="☀️";
 
 }
 
 };
+
+/* ===== HORLOGE ===== */
+
+function updateClock(){
+
+let now = new Date();
+
+document.getElementById("clock").textContent =
+now.toLocaleTimeString();
+
+}
+
+setInterval(updateClock,1000);
+
+updateClock();
 
 </script>
 
