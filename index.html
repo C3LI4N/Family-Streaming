@@ -416,7 +416,15 @@ rel="noopener noreferrer">
 
 <i class="fa-solid fa-film"></i> Accueil
 
+<button onclick="showLogin()">🔑 Voir identifiants</button>
+
 </a>
+
+<div id="cinepulseLogin" style="display:none; margin-top:10px; font-size:13px;">
+Email : cecemagnum85@outlook.fr<br>
+Mot de passe : sArbez-zegwuz-hezje9
+</div>
+
 
 <div class="site-info">
 
@@ -562,6 +570,24 @@ now.toLocaleTimeString();
 setInterval(updateClock,1000);
 
 updateClock();
+
+function showLogin(){
+
+let code = prompt("Entrez le code familial");
+
+if(code === "240205"){
+
+document.getElementById("cinepulseLogin").style.display="block";
+
+}
+
+else{
+
+alert("Code incorrect");
+
+}
+
+}
 
 </script>
 
