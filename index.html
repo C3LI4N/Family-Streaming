@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
 
 <meta charset="UTF-8">
@@ -19,7 +18,6 @@
 /* ===== BODY ===== */
 
 body{
-
 font-family:'Poppins',sans-serif;
 margin:0;
 
@@ -38,61 +36,36 @@ flex-direction:column;
 align-items:center;
 
 color:white;
-
-transition:0.3s;
-
 }
 
 /* ===== TITRE ===== */
 
 h1{
-
 margin-top:40px;
 font-size:42px;
-font-weight:600;
-
 }
 
 /* ===== HORLOGE ===== */
 
 #clock{
-
 font-size:18px;
 opacity:0.8;
 margin-top:5px;
-
 }
 
 /* ===== RECHERCHE ===== */
 
 .search{
-
 margin:25px;
-
 }
 
 input{
-
 padding:14px;
-
 width:260px;
-
 border-radius:30px;
 border:none;
 outline:none;
-
 font-size:15px;
-
-transition:0.3s;
-
-box-shadow:0 5px 15px rgba(0,0,0,0.25);
-
-}
-
-input:focus{
-
-width:320px;
-
 }
 
 /* ===== CONTAINER ===== */
@@ -103,16 +76,13 @@ display:grid;
 
 grid-template-columns:repeat(4,1fr);
 
-gap:30px;
+gap:25px;
 
 width:90%;
 
-max-width:1200px;
+max-width:1100px;
 
 margin-top:30px;
-
-margin-left:auto;
-margin-right:auto;
 
 }
 
@@ -120,48 +90,29 @@ margin-right:auto;
 
 .card{
 
-width:100%;
-
-}
-
 background:rgba(255,255,255,0.15);
 
 backdrop-filter:blur(12px);
--webkit-backdrop-filter:blur(12px);
 
 border:1px solid rgba(255,255,255,0.15);
 
-padding:25px;
+padding:20px;
 
 border-radius:16px;
 
-width:220px;
-
 box-shadow:0 10px 25px rgba(0,0,0,0.35);
 
+text-align:center;
+
 transition:0.3s;
-
-animation:fadeIn 0.6s ease;
-
-overflow:hidden;
 
 }
 
 .card:hover{
-
-transform:translateY(-8px) scale(1.03);
-
-box-shadow:0 20px 40px rgba(0,0,0,0.5);
-
+transform:translateY(-6px);
 }
 
-.card:active{
-
-transform:scale(0.97);
-
-}
-
-/* ===== LOGO SITE ===== */
+/* ===== LOGO ===== */
 
 .site-logo{
 
@@ -170,43 +121,24 @@ height:60px;
 
 object-fit:contain;
 
-display:block;
-
 margin:auto;
 margin-bottom:10px;
 
 border-radius:12px;
 
-transition:0.3s;
-
 }
 
-.card:hover .site-logo{
-
-transform:scale(1.15) rotate(3deg);
-
-}
-
-/* ===== TITRE CARTE ===== */
-
-.card h2{
-
-/* ===== INFOS SITE ===== */
+/* ===== INFOS ===== */
 
 .site-info{
 
 font-size:13px;
-opacity:0.85;
 
-margin-bottom:12px;
+opacity:0.9;
 
-text-align:center;
+margin-top:10px;
+
 line-height:1.4;
-
-}
-
-text-align:center;
-margin-bottom:15px;
 
 }
 
@@ -222,29 +154,39 @@ color:white;
 
 background:rgba(255,255,255,0.18);
 
-padding:12px;
+padding:10px;
 
-border-radius:12px;
+border-radius:10px;
 
-margin:10px 0;
-
-transition:0.25s;
-
-text-align:center;
-
-font-weight:500;
+margin-top:10px;
 
 }
 
 .link:hover{
-
 background:rgba(255,255,255,0.35);
+}
 
-transform:scale(1.05);
+/* ===== BOUTON IDENTIFIANTS ===== */
+
+.login-btn{
+
+margin-top:8px;
+
+border:none;
+
+padding:8px 12px;
+
+border-radius:8px;
+
+background:#444;
+
+color:white;
+
+cursor:pointer;
 
 }
 
-/* ===== BOUTON MODE SOMBRE ===== */
+/* ===== MODE SOMBRE ===== */
 
 .mode{
 
@@ -252,9 +194,6 @@ position:absolute;
 
 top:20px;
 right:20px;
-
-background:white;
-color:black;
 
 border:none;
 
@@ -264,99 +203,14 @@ border-radius:20px;
 
 cursor:pointer;
 
-font-size:14px;
-
 }
 
-/* ===== MODE SOMBRE ===== */
+/* ===== MOBILE ===== */
 
-.dark{
-
-background:#111;
-
-}
-
-.dark .card{
-
-background:#1f1f1f;
-
-}
-
-.dark .link{
-
-background:#333;
-
-}
-
-/* ===== ANIMATION ===== */
-
-@keyframes fadeIn{
-
-from{
-opacity:0;
-transform:translateY(15px);
-}
-
-to{
-opacity:1;
-transform:translateY(0);
-}
-
-}
-
-/* ===== VERSION MOBILE ===== */
-
-@media (max-width:600px){
-
-body{
-
-background:
-linear-gradient(rgba(0,0,0,0.82), rgba(0,0,0,0.82)),
-url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba");
-
-background-size:cover;
-background-position:center;
-
-}
-
-h1{
-
-font-size:30px;
-text-align:center;
-
-}
-
-.search input{
-
-width:85%;
-
-}
+@media (max-width:700px){
 
 .container{
-
 grid-template-columns:repeat(2,1fr);
-
-gap:15px;
-
-width:95%;
-
-}
-.card{
-
-width:100%;
-
-}
-
-}
-.mode{
-
-top:15px;
-right:15px;
-
-font-size:12px;
-
-padding:6px 12px;
-
 }
 
 }
@@ -374,9 +228,7 @@ padding:6px 12px;
 <div id="clock"></div>
 
 <div class="search">
-
 <input type="text" id="searchInput" placeholder="🔎 Rechercher un site...">
-
 </div>
 
 <div class="container">
@@ -386,18 +238,12 @@ padding:6px 12px;
 <div class="card">
 
 <img class="site-logo"
-src="https://www.google.com/s2/favicons?sz=128&domain=purstream.co"
-onerror="this.src='https://cdn-icons-png.flaticon.com/512/1160/1160358.png'">
+src="https://www.google.com/s2/favicons?sz=128&domain=purstream.co">
 
 <h2>Purstream</h2>
 
-<a class="link"
-href="https://purstream.cc"
-target="_blank"
-rel="noopener noreferrer">
-
+<a class="link" href="https://purstream.cc" target="_blank">
 <i class="fa-solid fa-film"></i> Accueil
-
 </a>
 
 <div class="site-info">
@@ -410,32 +256,27 @@ Dernière vérif: 14/03/2026
 
 </div>
 
+</div>
+
 <!-- CINEPULSE -->
 
 <div class="card">
 
 <img class="site-logo"
-src="https://icons.duckduckgo.com/ip3/cinepulse.lol.ico"
-onerror="this.src='https://cdn-icons-png.flaticon.com/512/1160/1160358.png'">
+src="https://icons.duckduckgo.com/ip3/cinepulse.lol.ico">
 
 <h2>Cinepulse</h2>
 
-<a class="link"
-href="https://cinepulse.co"
-target="_blank"
-rel="noopener noreferrer">
-
+<a class="link" href="https://cinepulse.co" target="_blank">
 <i class="fa-solid fa-film"></i> Accueil
-
-<button onclick="showLogin()">🔑 Voir identifiants</button>
-
 </a>
+
+<button class="login-btn" onclick="showLogin()">🔑 Voir identifiants</button>
 
 <div id="cinepulseLogin" style="display:none; margin-top:10px; font-size:13px;">
 Email : cecemagnum85@outlook.fr<br>
 Mot de passe : sArbez-zegwuz-hezje9
 </div>
-
 
 <div class="site-info">
 
@@ -447,23 +288,19 @@ Dernière vérif: 14/03/2026
 
 </div>
 
+</div>
+
 <!-- HIBOUX -->
 
 <div class="card">
 
 <img class="site-logo"
-src="https://www.google.com/s2/favicons?sz=128&domain=hiboux.click"
-onerror="this.src='https://cdn-icons-png.flaticon.com/512/1160/1160358.png'">
+src="https://www.google.com/s2/favicons?sz=128&domain=hiboux.click">
 
 <h2>Hiboux+</h2>
 
-<a class="link"
-href="https://hiboux.xyz"
-target="_blank"
-rel="noopener noreferrer">
-
+<a class="link" href="https://hiboux.xyz" target="_blank">
 <i class="fa-solid fa-film"></i> Accueil
-
 </a>
 
 <div class="site-info">
@@ -476,23 +313,19 @@ Dernière vérif: 14/03/2026
 
 </div>
 
+</div>
+
 <!-- MOVIX -->
 
 <div class="card">
 
 <img class="site-logo"
-src="https://www.google.com/s2/favicons?sz=128&domain=movix.blog"
-onerror="this.src='https://cdn-icons-png.flaticon.com/512/1160/1160358.png'">
+src="https://www.google.com/s2/favicons?sz=128&domain=movix.blog">
 
 <h2>Movix</h2>
 
-<a class="link"
-href="https://movix.blog"
-target="_blank"
-rel="noopener noreferrer">
-
+<a class="link" href="https://movix.blog" target="_blank">
 <i class="fa-solid fa-film"></i> Accueil
-
 </a>
 
 <div class="site-info">
@@ -502,6 +335,8 @@ Fiabilité: ★★★☆☆<br>
 Complexité: Moyenne<br>
 Contenu: Films, Séries<br>
 Dernière vérif: 14/03/2026
+
+</div>
 
 </div>
 
@@ -528,59 +363,20 @@ card.style.display = text.includes(filter) ? "block" : "none";
 
 });
 
-/* ===== MODE SOMBRE ===== */
-
-function toggleMode(){
-
-document.body.classList.toggle("dark");
-
-const btn = document.getElementById("modeBtn");
-
-if(document.body.classList.contains("dark")){
-
-localStorage.setItem("theme","dark");
-btn.textContent="☀️";
-
-}
-
-else{
-
-localStorage.setItem("theme","light");
-btn.textContent="🌙";
-
-}
-
-}
-
-/* ===== CHARGER THEME ===== */
-
-window.onload = function(){
-
-let theme = localStorage.getItem("theme");
-
-if(theme === "dark"){
-
-document.body.classList.add("dark");
-document.getElementById("modeBtn").textContent="☀️";
-
-}
-
-};
-
 /* ===== HORLOGE ===== */
 
 function updateClock(){
 
 let now = new Date();
 
-document.getElementById("clock").textContent =
-now.toLocaleTimeString();
+document.getElementById("clock").textContent = now.toLocaleTimeString();
 
 }
 
 setInterval(updateClock,1000);
-
 updateClock();
+
+/* ===== IDENTIFIANTS ===== */
 
 function showLogin(){
 
@@ -603,5 +399,4 @@ alert("Code incorrect");
 </script>
 
 </body>
-
 </html>
