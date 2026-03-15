@@ -187,11 +187,29 @@ input::placeholder{ color:#ddd; }
   .site-info{ font-size:18px; }
 }
 
+.install-btn{
+background:linear-gradient(135deg,#ff416c,#ff4b2b);
+color:white;
+border:none;
+padding:12px 22px;
+font-size:16px;
+border-radius:25px;
+cursor:pointer;
+box-shadow:0 6px 15px rgba(0,0,0,0.4);
+transition:all 0.3s ease;
+margin-top:20px;
+}
+
+.install-btn:hover{
+transform:scale(1.07);
+box-shadow:0 10px 25px rgba(0,0,0,0.6);
+}
+
 </style>
 </head>
 
-<body><button id="installBtn" style="margin:20px; padding:10px 15px; border-radius:8px; cursor:pointer;">
-📱 Installer l’app
+<body><button id="installBtn" class="install-btn">
+<i class="fa-solid fa-download"></i> Installer l'application
 </button>
 
 <!-- Mode sombre -->
@@ -310,6 +328,19 @@ window.onload=function(){
   document.querySelectorAll(".date-check").forEach(el=>el.textContent=today);
   console.log("🎬 Family Stream chargé avec succès");
 };
+
+// Bloquer l'app si installée sans code familial
+if (window.matchMedia('(display-mode: standalone)').matches) {
+
+    const authorized = localStorage.getItem("familyInstall");
+
+    if(authorized !== "true"){
+        alert("Installation non autorisée. Veuillez utiliser le bouton du site.");
+        document.body.innerHTML = "<h2 style='text-align:center;margin-top:50px'>Accès refusé</h2>";
+    }
+
+}
+
 </script>
 <script>
 if('serviceWorker' in navigator){
@@ -333,8 +364,11 @@ installBtn.addEventListener('click', async () => {
     // Demande du code familial
     let code = prompt("Entrez le code familial pour installer l'app");
     if(code !== "240205"){
-        alert("Code incorrect. Installation annulée.");
-        return;
+    alert("Code incorrect.");
+    return;
+}
+
+localStorage.setItem("familyInstall","true");
     }
 
     installBtn.style.display = 'none';
