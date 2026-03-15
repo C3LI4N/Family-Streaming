@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head><link rel="manifest" href="/manifest.json">
+<head><link rel="manifest" href="manifest.json">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Family Stream</title>
@@ -313,7 +313,7 @@ window.onload=function(){
 </script>
 <script>
 if('serviceWorker' in navigator){
-  navigator.serviceWorker.register('/sw.js').then(()=>{
+  navigator.serviceWorker.register('sw.js').then(()=>{
     console.log('Service Worker enregistré');
   });
 }
