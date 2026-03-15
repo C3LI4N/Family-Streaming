@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head><link rel="manifest" href="manifest.json">
+<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Family Stream</title>
@@ -195,35 +195,10 @@ padding:18px;
 }
 
 }
-.install-btn{
-position:fixed;
-left:20px;
-top:20px;
-background:linear-gradient(135deg,#ff416c,#ff4b2b);
-color:white;
-border:none;
-padding:10px 16px;
-border-radius:25px;
-cursor:pointer;
-box-shadow:0 6px 15px rgba(0,0,0,0.4);
-transition:0.3s;
-z-index:1000;
-}
-
-.install-btn:hover{
-transform:scale(1.07);
-}
-.install-btn:hover{
-transform:scale(1.07);
-box-shadow:0 10px 25px rgba(0,0,0,0.6);
-}
 
 </style>
 </head>
 
-<body><button id="installBtn" class="install-btn">
-<i class="fa-solid fa-download"></i> Installer l'app
-</button>
 
 <!-- Mode sombre -->
 <button class="mode" onclick="toggleMode()" id="modeBtn">🌙</button>
@@ -360,21 +335,6 @@ window.onload=function(){
 
 </script>
 <script>
-if('serviceWorker' in navigator){
-  navigator.serviceWorker.register('sw.js').then(()=>{
-    console.log('Service Worker enregistré');
-  });
-}
-
-let deferredPrompt;
-const installBtn = document.getElementById("installBtn");
-
-window.addEventListener("beforeinstallprompt", (e) => {
-  e.preventDefault();
-  deferredPrompt = e;
-});
-
-installBtn.addEventListener("click", async ()
 
   sessionStorage.setItem("familyAccess","true");
 
