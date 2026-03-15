@@ -374,14 +374,7 @@ window.addEventListener("beforeinstallprompt", (e) => {
   deferredPrompt = e;
 });
 
-installBtn.addEventListener("click", async () => {
-
-  const code = prompt("Code familial");
-
-  if(code !== "240205"){
-    alert("Code incorrect");
-    return;
-  }
+installBtn.addEventListener("click", async ()
 
   sessionStorage.setItem("familyAccess","true");
 
@@ -390,7 +383,7 @@ installBtn.addEventListener("click", async () => {
     await deferredPrompt.userChoice;
     deferredPrompt = null;
   }else{
-    alert("Sur iPhone : partage → ajouter à l'écran d'accueil");
+    
   }
 
 });
@@ -419,6 +412,32 @@ movix: "https://movix.blog"
 window.addEventListener("appinstalled", () => {
   installBtn.style.display="none";
 });
+
+function checkFamilyCode(){
+
+  // Vérifie si l'app est ouverte comme PWA
+  const isApp =
+  window.matchMedia('(display-mode: standalone)').matches ||
+  window.navigator.standalone === true;
+
+  if(!isApp) return;
+
+  const saved = localStorage.getItem("familyAccess");
+
+  if(saved === "true") return;
+
+  let code = prompt("Code familial");
+
+  if(code === "240205"){
+    localStorage.setItem("familyAccess","true");
+  }else{
+    document.body.innerHTML =
+    "<h2 style='text-align:center;margin-top:50px'>Accès refusé</h2>";
+  }
+
+}
+
+checkFamilyCode();
 
 </script>
 </body>
