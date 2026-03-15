@@ -62,12 +62,21 @@ margin:25px;
 
 input{
 
-padding:12px;
-width:250px;
+padding:14px 18px;
+width:260px;
 
 border-radius:30px;
 border:none;
 
+background:rgba(255,255,255,0.2);
+color:white;
+
+backdrop-filter:blur(6px);
+
+}
+
+input::placeholder{
+color:#ddd;
 }
 
 /* ===== CONTAINER ===== */
@@ -113,6 +122,8 @@ position:relative;
 
 overflow:hidden;
 
+transition:all 0.35s ease;
+
 }
 
 .card h2{
@@ -146,14 +157,12 @@ transition:0.4s;
 
 }
 
-.card:hover::before{
-opacity:1;
-top:-50%;
-left:-50%;
-}
-
 .card:hover{
-transform:translateY(-6px);
+
+transform:translateY(-8px) scale(1.04);
+
+box-shadow:0 15px 35px rgba(0,0,0,0.45);
+
 }
 
 /* ===== LOGO ===== */
@@ -289,6 +298,29 @@ transform:translateY(0);
 
 }
 
+/* ===== BADGES ===== */
+
+.badge{
+display:inline-block;
+padding:4px 10px;
+border-radius:20px;
+font-size:12px;
+font-weight:600;
+}
+
+.online{
+background:#27ae60;
+}
+
+.restricted{
+background:#e67e22;
+}
+
+.medium{
+background:#f1c40f;
+color:black;
+}
+
 /* ===== MOBILE ===== */
 
 @media (max-width:700px){
@@ -376,7 +408,7 @@ src="https://www.google.com/s2/favicons?sz=128&domain=purstream.co">
 
 <div class="site-info">
 
-Statut: <span class="status" data-url="https://purstream.cc">Vérification...</span><br>
+Statut: <span class="badge online">En ligne</span><br>
 Fiabilité: ★★★★★<br>
 Complexité: Faible<br>
 Contenu: Films, Séries<br>
@@ -408,7 +440,7 @@ Mot de passe : sArbez-zegwuz-hezje9
 
 <div class="site-info">
 
-Statut: <span class="status" data-url="https://cinepulse.co">Vérification...</span><br>
+Statut: <span class="badge online">Compte requis</span><br>
 Fiabilité: ★★★★★<br>
 Complexité: Faible<br>
 Contenu: Films<br>
@@ -433,7 +465,7 @@ src="https://www.google.com/s2/favicons?sz=128&domain=hiboux.click">
 
 <div class="site-info">
 
-Statut: <span class="status" data-url="https://hiboux.xyz">Vérification...</span><br>
+Statut: <span class="badge online">En ligne</span><br>
 Fiabilité: ★★★★★<br>
 Complexité: Moyenne<br>
 Contenu: Sports<br>
@@ -458,7 +490,7 @@ src="https://www.google.com/s2/favicons?sz=128&domain=movix.blog">
 
 <div class="site-info">
 
-Statut: <span class="status" data-url="https://movix.blog">Vérification...</span><br>
+Statut: <span class="badge online">En ligne</span><br>
 Fiabilité: ★★★☆☆<br>
 Complexité: Moyenne<br>
 Contenu: Films, Séries<br>
@@ -587,6 +619,10 @@ el.textContent=today;
 }
 
 updateDate();
+
+console.log("🎬 Family Stream chargé avec succès");
+
+alert("Bienvenue sur Family Stream 🎬");
 
 </script>
 
