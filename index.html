@@ -186,10 +186,13 @@ input::placeholder{ color:#ddd; }
   .link{ font-size:20px; padding:15px; }
   .site-info{ font-size:18px; }
 }
+
 </style>
 </head>
 
-<body>
+<body><button id="installBtn" style="margin:20px; padding:10px 15px; border-radius:8px; cursor:pointer;">
+📱 Installer l’app
+</button>
 
 <!-- Mode sombre -->
 <button class="mode" onclick="toggleMode()" id="modeBtn">🌙</button>
@@ -220,7 +223,7 @@ input::placeholder{ color:#ddd; }
 <div class="card">
   <h2>Cinepulse</h2>
   <a class="link" href="https://cinepulse.co" target="_blank"><i class="fa-solid fa-film"></i> Accueil</a>
-  <button class="login-btn" onclick="showLogin()">🔑 Voir identifiants</button>
+  <button class="login-btn" id="cinepulseLoginBtn" style="display:none;">🔑 Voir identifiants</button>
   <div id="cinepulseLogin" style="display:none; margin-top:10px; font-size:13px;">
     Email : cecemagnum85@outlook.fr<br>
     Mot de passe : sArbez-zegwuz-hezje9
@@ -314,13 +317,51 @@ if('serviceWorker' in navigator){
     console.log('Service Worker enregistré');
   });
 }
-</script>
-<script>
-let codeApp = prompt("Entrez le code familial pour ouvrir l'app");
-if(codeApp !== "1234"){
-  alert("Code incorrect. Fermeture de l'app.");
-  document.body.innerHTML="<h2>Code incorrect</h2>";
+
+let deferredPrompt;
+const installBtn = document.getElementById('installBtn');
+installBtn.style.display = 'none';
+
+// Intercepter l'événement "beforeinstallprompt"
+window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault(); // Empêche l'affichage automatique
+    deferredPrompt = e;
+    installBtn.style.display = 'inline-block';
+});
+
+installBtn.addEventListener('click', async () => {
+    // Demande du code familial
+    let code = prompt("Entrez le code familial pour installer l'app");
+    if(code !== "240205"){
+        alert("Code incorrect. Installation annulée.");
+        return;
+    }
+
+    installBtn.style.display = 'none';
+    if(deferredPrompt){
+        deferredPrompt.prompt();
+        const choiceResult = await deferredPrompt.userChoice;
+        console.log(choiceResult.outcome);
+        deferredPrompt = null;
+    }
+});
+
+function initAppOnlyFeatures() {
+    const btn = document.getElementById("cinepulseLoginBtn");
+    if(btn){
+        btn.style.display = "inline-block"; // visible seulement dans la PWA
+        btn.addEventListener("click", showLogin);
+    }
 }
+
+// Détection si le site est installé comme PWA
+if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true) {
+    console.log("PWA détectée");
+    initAppOnlyFeatures();
+} else {
+    console.log("Site web classique");
+}
+
 </script>
 </body>
 </html>
