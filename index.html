@@ -8,9 +8,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-<!-- Manifest PWA -->
-<link rel="manifest" href="manifest.json">
-
 <style>
 /* ===== BODY ===== */
 body{
@@ -177,58 +174,24 @@ input::placeholder{ color:#ddd; }
   input{ width:100%; }
 }
 /* SMART TV */
-@media (max-width:700px){
-
-body{
-background:#111;
-}
-
-h1{
-font-size:28px;
-margin-top:20px;
-}
-
-#clock{
-font-size:14px;
-margin-bottom:10px;
-}
-
-.search{
-width:90%;
-}
-
-input{
-width:100%;
-padding:12px;
-}
+@media (min-width:1500px){
 
 .container{
-grid-template-columns:1fr;
-gap:15px;
-width:92%;
+grid-template-columns:repeat(3,1fr);
+gap:50px;
 }
 
 .card{
-padding:18px;
-border-radius:14px;
+padding:40px;
 }
 
 .card h2{
-font-size:20px;
-}
-
-.site-logo{
-width:55px;
-height:55px;
+font-size:32px;
 }
 
 .link{
-font-size:15px;
-padding:10px;
-}
-
-.site-info{
-font-size:13px;
+font-size:22px;
+padding:18px;
 }
 
 }
@@ -259,7 +222,7 @@ box-shadow:0 10px 25px rgba(0,0,0,0.6);
 </head>
 
 <body><button id="installBtn" class="install-btn">
-<i class="fa-solid fa-download"></i> Installer l'application
+<i class="fa-solid fa-download"></i> Installer l'app
 </button>
 
 <!-- Mode sombre -->
@@ -270,6 +233,8 @@ box-shadow:0 10px 25px rgba(0,0,0,0.6);
 <div class="search">
   <input type="text" id="searchInput" placeholder="🔎 Rechercher un site...">
 </div>
+
+<div id="filmSuggestion"></div>
 
 <div class="container">
 
@@ -291,7 +256,7 @@ box-shadow:0 10px 25px rgba(0,0,0,0.6);
 <div class="card">
   <h2>Cinepulse</h2>
   <a class="link" href="https://cinepulse.co" target="_blank"><i class="fa-solid fa-film"></i> Accueil</a>
-  <button class="login-btn" id="cinepulseLoginBtn" style="display:none;">🔑 Voir identifiants</button>
+  <button class="login-btn" onclick="showLogin()">🔑 Voir identifiants</button>
   <div id="cinepulseLogin" style="display:none; margin-top:10px; font-size:13px;">
     Email : cecemagnum85@outlook.fr<br>
     Mot de passe : sArbez-zegwuz-hezje9
@@ -311,7 +276,7 @@ box-shadow:0 10px 25px rgba(0,0,0,0.6);
   <h2>Hiboux+</h2>
   <a class="link" href="https://hiboux.xyz" target="_blank"><i class="fa-solid fa-film"></i> Accueil</a>
   <div class="site-info">
-    Statut: <span id="purstreamStatus" class="badge online">Vérification...</span><br>
+    Statut: <span id="hibouxStatus" class="badge online">Vérification...</span><br>
     Fiabilité: ★★★★★<br>
     Complexité: Moyenne<br>
     Contenu: Sports<br>
@@ -366,11 +331,11 @@ function toggleMode(){
 /* LOGIN CINEPULSE */
 function showLogin(){
 
-  let authorized = sessionStorage.getItem("familyAccess");
+  let access = sessionStorage.getItem("familyAccess");
 
-  if(authorized !== "true"){
+  if(access !== "true"){
 
-    let code = prompt("Entrez le code familial");
+    let code = prompt("Code familial");
 
     if(code !== "240205"){
       alert("Code incorrect");
@@ -382,7 +347,9 @@ function showLogin(){
   }
 
   document.getElementById("cinepulseLogin").style.display="block";
+
 }
+
 /* DATE VERIFICATION */
 window.onload=function(){
   if(localStorage.getItem("theme")==="dark"){ document.body.classList.add("dark"); document.getElementById("modeBtn").textContent="☀️"; }
@@ -390,18 +357,6 @@ window.onload=function(){
   document.querySelectorAll(".date-check").forEach(el=>el.textContent=today);
   console.log("🎬 Family Stream chargé avec succès");
 };
-
-// Bloquer l'app si installée sans code familial
-if (window.matchMedia('(display-mode: standalone)').matches) {
-
-    const authorized = localStorage.getItem("familyInstall");
-
-    if(authorized !== "true"){
-        alert("Installation non autorisée. Veuillez utiliser le bouton du site.");
-        document.body.innerHTML = "<h2 style='text-align:center;margin-top:50px'>Accès refusé</h2>";
-    }
-
-}
 
 </script>
 <script>
@@ -414,54 +369,31 @@ if('serviceWorker' in navigator){
 let deferredPrompt;
 const installBtn = document.getElementById("installBtn");
 
-installBtn.style.display = "none";
-
 window.addEventListener("beforeinstallprompt", (e) => {
   e.preventDefault();
   deferredPrompt = e;
-  installBtn.style.display = "block";
 });
 
 installBtn.addEventListener("click", async () => {
 
-  let code = prompt("Entrez le code familial");
+  const code = prompt("Code familial");
 
   if(code !== "240205"){
     alert("Code incorrect");
     return;
   }
 
-  localStorage.setItem("familyInstall","true");
+  sessionStorage.setItem("familyAccess","true");
 
   if(deferredPrompt){
-
     deferredPrompt.prompt();
-    const result = await deferredPrompt.userChoice;
+    await deferredPrompt.userChoice;
     deferredPrompt = null;
-
-  } else {
-
-    alert("Sur iPhone : cliquez sur 'Partager' puis 'Ajouter à l'écran d'accueil'");
-
+  }else{
+    alert("Sur iPhone : partage → ajouter à l'écran d'accueil");
   }
 
 });
-
-function initAppOnlyFeatures() {
-    const btn = document.getElementById("cinepulseLoginBtn");
-    if(btn){
-        btn.style.display = "inline-block"; // visible seulement dans la PWA
-        btn.addEventListener("click", showLogin);
-    }
-}
-
-// Détection si le site est installé comme PWA
-if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true) {
-    console.log("PWA détectée");
-    initAppOnlyFeatures();
-} else {
-    console.log("Site web classique");
-}
 
 async function checkSite(url, badgeId){
   try{
@@ -473,39 +405,20 @@ async function checkSite(url, badgeId){
 }
 
 checkSite("https://purstream.cc","purstreamStatus");
-
-async function checkSite(url, badgeId){
-  try{
-    await fetch(url,{mode:"no-cors"});
-    document.getElementById(badgeId).textContent="En ligne";
-  }catch{
-    document.getElementById(badgeId).textContent="Hors ligne";
-  }
-}
-
 checkSite("https://cinepulse.co","cinepulseStatus");
-
-async function checkSite(url, badgeId){
-  try{
-    await fetch(url,{mode:"no-cors"});
-    document.getElementById(badgeId).textContent="En ligne";
-  }catch{
-    document.getElementById(badgeId).textContent="Hors ligne";
-  }
-}
-
 checkSite("https://hiboux.xyz","hibouxStatus");
+checkSite("https://movix.blog","movixStatus");
 
-async function checkSite(url, badgeId){
-  try{
-    await fetch(url,{mode:"no-cors"});
-    document.getElementById(badgeId).textContent="En ligne";
-  }catch{
-    document.getElementById(badgeId).textContent="Hors ligne";
-  }
+const sites = {
+  purstream: "https://purstream.cc",
+  cinepulse: "https://cinepulse.co",
+  hiboux: "https://hiboux.xyz",
+movix: "https://movix.blog"
 }
 
-checkSite("https://movix.blog","movixStatus");
+window.addEventListener("appinstalled", () => {
+  installBtn.style.display="none";
+});
 
 </script>
 </body>
