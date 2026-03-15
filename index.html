@@ -91,6 +91,13 @@ margin-top:30px;
 
 .card{
 
+.card h2{
+font-size:20px;
+white-space:nowrap;
+}
+
+min-height:260px;
+
 background:rgba(255,255,255,0.15);
 
 backdrop-filter:blur(12px);
@@ -255,6 +262,31 @@ background:#333;
 
 }
 
+/* animation apparition */
+
+.card{
+
+opacity:0;
+transform:translateY(20px);
+
+animation:fadeIn 0.6s forwards;
+
+}
+
+.card:nth-child(1){animation-delay:0.1s;}
+.card:nth-child(2){animation-delay:0.2s;}
+.card:nth-child(3){animation-delay:0.3s;}
+.card:nth-child(4){animation-delay:0.4s;}
+
+@keyframes fadeIn{
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+
 /* ===== MOBILE ===== */
 
 @media (max-width:700px){
@@ -263,12 +295,8 @@ background:#333;
 
 body:not(.dark){
 
-background:
-linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)),
-url("https://images.unsplash.com/photo-1489599849927-2ee91cede3ba");
-
-background-size:cover;
-background-position:center;
+background:#f5f5f5;
+color:#222;
 
 }
 
@@ -339,11 +367,11 @@ src="https://www.google.com/s2/favicons?sz=128&domain=purstream.co">
 
 <div class="site-info">
 
-Status: ✅ En ligne<br>
+Statut: <span class="status" data-url="https://purstream.cc">Vérification...</span>
 Fiabilité: ★★★★★<br>
 Complexité: Faible<br>
 Contenu: Films, Séries<br>
-Dernière vérif: 14/03/2026
+Dernière vérif: <span class="date-check"></span>
 
 </div>
 
@@ -371,11 +399,11 @@ Mot de passe : sArbez-zegwuz-hezje9
 
 <div class="site-info">
 
-Statut: ⚠ Accès restreint<br>
+Statut: <span class="status" data-url="https://cinepulse.co">Vérification...</span>
 Fiabilité: ★★★★★<br>
 Complexité: Faible<br>
 Contenu: Films<br>
-Dernière vérif: 14/03/2026
+Dernière vérif: <span class="date-check"></span>
 
 </div>
 
@@ -396,11 +424,11 @@ src="https://www.google.com/s2/favicons?sz=128&domain=hiboux.click">
 
 <div class="site-info">
 
-Statut: ✅ En ligne<br>
+Statut: <span class="status" data-url="https://hiboux.xyz">Vérification...</span>
 Fiabilité: ★★★★★<br>
 Complexité: Moyenne<br>
 Contenu: Sports<br>
-Dernière vérif: 14/03/2026
+Dernière vérif: <span class="date-check"></span>
 
 </div>
 
@@ -421,11 +449,11 @@ src="https://www.google.com/s2/favicons?sz=128&domain=movix.blog">
 
 <div class="site-info">
 
-Statut: ✅ En ligne<br>
+Statut: <span class="status" data-url="https://movix.blog">Vérification...</span>
 Fiabilité: ★★★☆☆<br>
 Complexité: Moyenne<br>
 Contenu: Films, Séries<br>
-Dernière vérif: 14/03/2026
+Dernière vérif: <span class="date-check"></span>
 
 </div>
 
@@ -520,6 +548,50 @@ alert("Code incorrect");
 }
 
 }
+
+/* ===== VERIFICATION SITE ===== */
+
+async function checkSites(){
+
+const sites=document.querySelectorAll(".status");
+
+sites.forEach(async site=>{
+
+const url=site.dataset.url;
+
+try{
+
+await fetch(url,{mode:"no-cors"});
+
+site.textContent="✅ En ligne";
+
+}catch{
+
+site.textContent="❌ Hors ligne";
+
+}
+
+});
+
+}
+
+checkSites();
+
+/* ===== DATE VERIFICATION ===== */
+
+function updateDate(){
+
+let today=new Date().toLocaleDateString("fr-FR");
+
+document.querySelectorAll(".date-check").forEach(el=>{
+
+el.textContent=today;
+
+});
+
+}
+
+updateDate();
 
 </script>
 
