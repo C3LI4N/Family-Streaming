@@ -92,6 +92,9 @@ input::placeholder{ color:#ddd; }
   transform:translateX(-50%);
   color:white;
   font-weight:600;
+  background:rgba(0,0,0,0.4);
+  padding:4px 10px;
+  border-radius:8px;
   opacity:0;
   transition:0.3s;
 }
@@ -151,9 +154,9 @@ input::placeholder{ color:#ddd; }
   font-size:12px;
   font-weight:600;
 }
-.online{ background:#27ae60; }
-.restricted{ background:#e67e22; }
-.medium{ background:#f1c40f; color:black; }
+.online{ background:#27ae60; }       /* vert = en ligne */
+.restricted{ background:#e67e22; }   /* orange = compte requis */
+.offline{ background:#e74c3c; }      /* rouge = hors ligne */
 /* MOBILE */
 @media (max-width:700px){
   body{ background:#111; }
@@ -207,8 +210,15 @@ input::placeholder{ color:#ddd; }
   <img class="site-logo" src="https://icons.duckduckgo.com/ip3/cinepulse.co.ico">
   <h2>Cinepulse</h2>
   <a class="link" href="https://cinepulse.co" target="_blank"><i class="fa-solid fa-film"></i> Accueil</a>
+  
+  <button class="login-btn" onclick="showLogin()">🔑 Voir identifiants</button>
+  <div id="cinepulseLogin" style="display:none; margin-top:10px; font-size:13px;">
+    Email : cecemagnum85@outlook.fr<br>
+    Mot de passe : sArbez-zegwuz-hezje9
+  </div>
+
   <div class="site-info">
-    Statut: <span class="badge online">Compte requis</span><br>
+    Statut: <span class="badge restricted">Compte requis</span><br>
     Fiabilité: ★★★★★<br>
     Complexité: Faible<br>
     Contenu: Films<br>
@@ -247,7 +257,7 @@ input::placeholder{ color:#ddd; }
 </div>
 
 <script>
-/* RECHERCHE */
+/* ===== RECHERCHE ===== */
 const searchInput=document.getElementById("searchInput");
 const cards=document.querySelectorAll(".card");
 searchInput.addEventListener("keyup",function(){
@@ -257,29 +267,40 @@ searchInput.addEventListener("keyup",function(){
   });
 });
 
-/* HORLOGE */
+/* ===== HORLOGE ===== */
 function updateClock(){
   document.getElementById("clock").textContent=new Date().toLocaleTimeString();
 }
 setInterval(updateClock,1000); updateClock();
 
-/* MODE SOMBRE */
+/* ===== MODE SOMBRE ===== */
 function toggleMode(){
   document.body.classList.toggle("dark");
   const btn=document.getElementById("modeBtn");
   if(document.body.classList.contains("dark")){ btn.textContent="☀️"; localStorage.setItem("theme","dark"); }
   else{ btn.textContent="🌙"; localStorage.setItem("theme","light"); }
 }
+
+/* ===== DATE VERIFICATION ===== */
 window.onload=function(){
   if(localStorage.getItem("theme")==="dark"){
     document.body.classList.add("dark");
     document.getElementById("modeBtn").textContent="☀️";
   }
-  // Date vérif automatique
   const today=new Date().toLocaleDateString("fr-FR");
   document.querySelectorAll(".date-check").forEach(el=>el.textContent=today);
   console.log("🎬 Family Stream chargé avec succès");
 };
+
+/* ===== IDENTIFIANTS ===== */
+function showLogin(){
+  let code = prompt("Entrez le code familial");
+  if(code === "240205"){
+    document.getElementById("cinepulseLogin").style.display = "block";
+  } else {
+    alert("Code incorrect");
+  }
+}
 </script>
 
 </body>
