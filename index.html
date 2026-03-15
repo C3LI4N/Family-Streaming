@@ -91,11 +91,6 @@ margin-top:30px;
 
 .card{
 
-.card h2{
-font-size:20px;
-white-space:nowrap;
-}
-
 min-height:260px;
 
 background:rgba(255,255,255,0.15);
@@ -117,6 +112,13 @@ transition:0.3s;
 position:relative;
 
 overflow:hidden;
+
+}
+
+.card h2{
+
+font-size:20px;
+white-space:normal;
 
 }
 
@@ -177,7 +179,7 @@ opacity:0.9;
 
 margin-top:10px;
 
-line-height:1.4;
+line-height:1.6;
 
 }
 
@@ -291,6 +293,13 @@ transform:translateY(0);
 
 @media (max-width:700px){
 
+body{
+
+background:#f5f5f5;
+color:#222;
+
+}
+
 /* fond plus sombre pour lire les cartes */
 
 body:not(.dark){
@@ -367,7 +376,7 @@ src="https://www.google.com/s2/favicons?sz=128&domain=purstream.co">
 
 <div class="site-info">
 
-Statut: <span class="status" data-url="https://purstream.cc">Vérification...</span>
+Statut: <span class="status" data-url="https://purstream.cc">Vérification...</span><br>
 Fiabilité: ★★★★★<br>
 Complexité: Faible<br>
 Contenu: Films, Séries<br>
@@ -399,7 +408,7 @@ Mot de passe : sArbez-zegwuz-hezje9
 
 <div class="site-info">
 
-Statut: <span class="status" data-url="https://cinepulse.co">Vérification...</span>
+Statut: <span class="status" data-url="https://cinepulse.co">Vérification...</span><br>
 Fiabilité: ★★★★★<br>
 Complexité: Faible<br>
 Contenu: Films<br>
@@ -424,7 +433,7 @@ src="https://www.google.com/s2/favicons?sz=128&domain=hiboux.click">
 
 <div class="site-info">
 
-Statut: <span class="status" data-url="https://hiboux.xyz">Vérification...</span>
+Statut: <span class="status" data-url="https://hiboux.xyz">Vérification...</span><br>
 Fiabilité: ★★★★★<br>
 Complexité: Moyenne<br>
 Contenu: Sports<br>
@@ -449,7 +458,7 @@ src="https://www.google.com/s2/favicons?sz=128&domain=movix.blog">
 
 <div class="site-info">
 
-Statut: <span class="status" data-url="https://movix.blog">Vérification...</span>
+Statut: <span class="status" data-url="https://movix.blog">Vérification...</span><br>
 Fiabilité: ★★★☆☆<br>
 Complexité: Moyenne<br>
 Contenu: Films, Séries<br>
@@ -551,25 +560,11 @@ alert("Code incorrect");
 
 /* ===== VERIFICATION SITE ===== */
 
-async function checkSites(){
+function checkSites(){
 
-const sites=document.querySelectorAll(".status");
-
-sites.forEach(async site=>{
-
-const url=site.dataset.url;
-
-try{
-
-await fetch(url,{mode:"no-cors"});
+document.querySelectorAll(".status").forEach(site=>{
 
 site.textContent="✅ En ligne";
-
-}catch{
-
-site.textContent="❌ Hors ligne";
-
-}
 
 });
 
