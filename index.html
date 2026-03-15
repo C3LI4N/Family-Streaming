@@ -8,6 +8,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
+<!-- Manifest PWA -->
+<link rel="manifest" href="manifest.json">
+
 <style>
 /* ===== BODY ===== */
 body{
@@ -32,14 +35,9 @@ h1{
   font-weight:600;
   text-align:center;
 }
-#clock{
-  opacity:0.8;
-  margin-top:5px;
-}
+#clock{ opacity:0.8; margin-top:5px; }
 /* RECHERCHE */
-.search{
-  margin:20px;
-}
+.search{ margin:20px; }
 input{
   padding:14px 18px;
   width:260px;
@@ -73,18 +71,13 @@ input::placeholder{ color:#ddd; }
   overflow:hidden;
   transition:all 0.35s ease;
 }
-.card h2{
-  font-size:20px;
-  white-space:normal;
-}
+.card h2{ font-size:20px; white-space:normal; }
 /* Hover universel */
 .card:hover{
   transform:translateY(-8px) scale(1.05);
   box-shadow:0 20px 45px rgba(255,255,255,0.6);
 }
-.card:hover .site-logo{
-  transform:scale(1.3);
-}
+.card:hover .site-logo{ transform:scale(1.3); }
 .card::after{
   position:absolute;
   bottom:10px;
@@ -164,6 +157,13 @@ input::placeholder{ color:#ddd; }
 .online{ background:#27ae60; }       /* vert = en ligne */
 .restricted{ background:#e67e22; }   /* orange = compte requis */
 .offline{ background:#e74c3c; }      /* rouge = hors ligne */
+/* FOOTER DISCLAIMER */
+.footer{
+  margin:20px 0;
+  font-size:12px;
+  color:#ccc;
+  text-align:center;
+}
 /* MOBILE */
 @media (max-width:700px){
   body{ background:#111; }
@@ -191,10 +191,14 @@ input::placeholder{ color:#ddd; }
 
 <body>
 
+<!-- Mode sombre -->
 <button class="mode" onclick="toggleMode()" id="modeBtn">🌙</button>
 <h1>Family Stream</h1>
 <div id="clock"></div>
-<div class="search"><input type="text" id="searchInput" placeholder="🔎 Rechercher un site..."></div>
+
+<div class="search">
+  <input type="text" id="searchInput" placeholder="🔎 Rechercher un site...">
+</div>
 
 <div class="container">
 
@@ -214,8 +218,6 @@ input::placeholder{ color:#ddd; }
 
 <!-- CINEPULSE -->
 <div class="card">
-  <img class="site-logo" src="https://imgs.search.brave.com/TvFHoAr-hDrc8o9VqHe-zatCpC0ZSVVwvAonMsZVNKc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMudmVjdGVlenku/Y29tL3N5c3RlbS9y/ZXNvdXJjZXMvdGh1/bWJuYWlscy8wMzQv/MzQ5LzM1Ny9zbWFs/bC9jaW5lbWEtbG9n/by1pbGx1c3RyYXRp/b24taWNvbi12aW50/YWdlLXJldHJvLW9s/ZC1yb2xsLWZpbG0t/ZGVzaWduLXZlY3Rv/ci5qcGc"
-
   <h2>Cinepulse</h2>
   <a class="link" href="https://cinepulse.co" target="_blank"><i class="fa-solid fa-film"></i> Accueil</a>
   <button class="login-btn" onclick="showLogin()">🔑 Voir identifiants</button>
@@ -262,6 +264,11 @@ input::placeholder{ color:#ddd; }
 
 </div>
 
+<!-- FOOTER DISCLAIMER -->
+<div class="footer">
+  ⚠️ Usage personnel uniquement. Je ne fournis pas le contenu des sites.
+</div>
+
 <script>
 /* RECHERCHE */
 const searchInput=document.getElementById("searchInput");
@@ -290,9 +297,7 @@ function showLogin(){
   let code = prompt("Entrez le code familial");
   if(code === "240205"){
     document.getElementById("cinepulseLogin").style.display = "block";
-  } else {
-    alert("Code incorrect");
-  }
+  } else { alert("Code incorrect"); }
 }
 
 /* DATE VERIFICATION */
@@ -303,6 +308,5 @@ window.onload=function(){
   console.log("🎬 Family Stream chargé avec succès");
 };
 </script>
-
 </body>
 </html>
