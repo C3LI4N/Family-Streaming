@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
+<head><link rel="manifest" href="/manifest.json">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Family Stream</title>
@@ -307,6 +307,20 @@ window.onload=function(){
   document.querySelectorAll(".date-check").forEach(el=>el.textContent=today);
   console.log("🎬 Family Stream chargé avec succès");
 };
+</script>
+<script>
+if('serviceWorker' in navigator){
+  navigator.serviceWorker.register('/sw.js').then(()=>{
+    console.log('Service Worker enregistré');
+  });
+}
+</script>
+<script>
+let codeApp = prompt("Entrez le code familial pour ouvrir l'app");
+if(codeApp !== "1234"){
+  alert("Code incorrect. Fermeture de l'app.");
+  document.body.innerHTML="<h2>Code incorrect</h2>";
+}
 </script>
 </body>
 </html>
