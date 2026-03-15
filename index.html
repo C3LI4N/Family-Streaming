@@ -25,7 +25,7 @@ body{
   flex-direction:column;
   align-items:center;
 }
-/* ===== HEADER ===== */
+/* HEADER */
 h1{
   margin-top:30px;
   font-size:42px;
@@ -36,7 +36,7 @@ h1{
   opacity:0.8;
   margin-top:5px;
 }
-/* ===== RECHERCHE ===== */
+/* RECHERCHE */
 .search{
   margin:20px;
 }
@@ -50,7 +50,7 @@ input{
   backdrop-filter:blur(6px);
 }
 input::placeholder{ color:#ddd; }
-/* ===== CONTAINER ===== */
+/* CONTAINER */
 .container{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
@@ -59,7 +59,7 @@ input::placeholder{ color:#ddd; }
   max-width:1200px;
   margin-top:30px;
 }
-/* ===== CARTES ===== */
+/* CARTES */
 .card{
   min-height:260px;
   background:rgba(255,255,255,0.05);
@@ -80,7 +80,7 @@ input::placeholder{ color:#ddd; }
 /* Hover universel */
 .card:hover{
   transform:translateY(-8px) scale(1.05);
-  box-shadow:0 20px 45px rgba(0,0,0,0.6);
+  box-shadow:0 20px 45px rgba(255,255,255,0.6);
 }
 .card:hover .site-logo{
   transform:scale(1.3);
@@ -100,7 +100,13 @@ input::placeholder{ color:#ddd; }
 }
 .card:hover::after{ opacity:1; }
 /* LOGO */
-.site-logo{ width:60px; height:60px; object-fit:contain; margin-bottom:10px; transition:0.3s; }
+.site-logo{
+  width:60px;
+  height:60px;
+  object-fit:contain;
+  margin-bottom:10px;
+  transition:0.3s;
+}
 /* INFOS */
 .site-info{
   font-size:13px;
@@ -153,6 +159,7 @@ input::placeholder{ color:#ddd; }
   border-radius:20px;
   font-size:12px;
   font-weight:600;
+  transition:0.3s;
 }
 .online{ background:#27ae60; }       /* vert = en ligne */
 .restricted{ background:#e67e22; }   /* orange = compte requis */
@@ -207,16 +214,15 @@ input::placeholder{ color:#ddd; }
 
 <!-- CINEPULSE -->
 <div class="card">
-  <img class="site-logo" src="https://icons.duckduckgo.com/ip3/cinepulse.co.ico">
+  <img class="site-logo" src="https://imgs.search.brave.com/TvFHoAr-hDrc8o9VqHe-zatCpC0ZSVVwvAonMsZVNKc/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9zdGF0/aWMudmVjdGVlenku/Y29tL3N5c3RlbS9y/ZXNvdXJjZXMvdGh1/bWJuYWlscy8wMzQv/MzQ5LzM1Ny9zbWFs/bC9jaW5lbWEtbG9n/by1pbGx1c3RyYXRp/b24taWNvbi12aW50/YWdlLXJldHJvLW9s/ZC1yb2xsLWZpbG0t/ZGVzaWduLXZlY3Rv/ci5qcGc"
+
   <h2>Cinepulse</h2>
   <a class="link" href="https://cinepulse.co" target="_blank"><i class="fa-solid fa-film"></i> Accueil</a>
-  
   <button class="login-btn" onclick="showLogin()">🔑 Voir identifiants</button>
   <div id="cinepulseLogin" style="display:none; margin-top:10px; font-size:13px;">
     Email : cecemagnum85@outlook.fr<br>
     Mot de passe : sArbez-zegwuz-hezje9
   </div>
-
   <div class="site-info">
     Statut: <span class="badge restricted">Compte requis</span><br>
     Fiabilité: ★★★★★<br>
@@ -257,7 +263,7 @@ input::placeholder{ color:#ddd; }
 </div>
 
 <script>
-/* ===== RECHERCHE ===== */
+/* RECHERCHE */
 const searchInput=document.getElementById("searchInput");
 const cards=document.querySelectorAll(".card");
 searchInput.addEventListener("keyup",function(){
@@ -267,13 +273,11 @@ searchInput.addEventListener("keyup",function(){
   });
 });
 
-/* ===== HORLOGE ===== */
-function updateClock(){
-  document.getElementById("clock").textContent=new Date().toLocaleTimeString();
-}
+/* HORLOGE */
+function updateClock(){ document.getElementById("clock").textContent=new Date().toLocaleTimeString(); }
 setInterval(updateClock,1000); updateClock();
 
-/* ===== MODE SOMBRE ===== */
+/* MODE SOMBRE */
 function toggleMode(){
   document.body.classList.toggle("dark");
   const btn=document.getElementById("modeBtn");
@@ -281,18 +285,7 @@ function toggleMode(){
   else{ btn.textContent="🌙"; localStorage.setItem("theme","light"); }
 }
 
-/* ===== DATE VERIFICATION ===== */
-window.onload=function(){
-  if(localStorage.getItem("theme")==="dark"){
-    document.body.classList.add("dark");
-    document.getElementById("modeBtn").textContent="☀️";
-  }
-  const today=new Date().toLocaleDateString("fr-FR");
-  document.querySelectorAll(".date-check").forEach(el=>el.textContent=today);
-  console.log("🎬 Family Stream chargé avec succès");
-};
-
-/* ===== IDENTIFIANTS ===== */
+/* LOGIN CINEPULSE */
 function showLogin(){
   let code = prompt("Entrez le code familial");
   if(code === "240205"){
@@ -301,6 +294,14 @@ function showLogin(){
     alert("Code incorrect");
   }
 }
+
+/* DATE VERIFICATION */
+window.onload=function(){
+  if(localStorage.getItem("theme")==="dark"){ document.body.classList.add("dark"); document.getElementById("modeBtn").textContent="☀️"; }
+  const today=new Date().toLocaleDateString("fr-FR");
+  document.querySelectorAll(".date-check").forEach(el=>el.textContent=today);
+  console.log("🎬 Family Stream chargé avec succès");
+};
 </script>
 
 </body>
